@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="my-5 text-center">Recipes</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <ul class="list-group">
+                    {% for recipe in recipes %}
+                        <li class="list-group-item my-3">
+                            <h2 class="mb-3">
+                                <a href="{% url 'recipe_detail' recipe.slug %}">
+                                    {{ recipe.name }}
+                                </a>
+                            </h2>
+                            <p>
+                                <strong>Ingredients:</strong> {{ recipe.ingredients }}
+                            </p>
+                            <p class="text-muted">
+                                Created: {{ recipe.date_created }}
+                            </p>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No recipes found.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
